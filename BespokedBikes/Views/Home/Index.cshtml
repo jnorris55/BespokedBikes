@@ -1,0 +1,62 @@
+﻿@model BespokedBikes.Models.Dashboard
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Bespoked Bikes</h2>
+    <h3>Sales Manager</h3>    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Sales This Month</h2>        
+        <table class="table" style="margin-top:10px;">
+            @foreach (var item in Model.salesThisMonth)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.totalSales)
+                    </td>
+                </tr>
+            }
+        </table>     
+</div>
+    <div class="col-md-4">
+        <h2>Bikes in Demand</h2>  
+        <table class="table" style="margin-top:10px;">
+            @foreach (var item in Model.hotBike)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bikeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bikesSold)
+                    </td>
+                </tr>
+            }
+        </table>        
+    </div>
+    <div class="col-md-4">
+        <h2>Current Sales</h2>   
+        <table class="table" style="margin-top:10px;">
+            @foreach (var item in Model.currentDiscounts)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product1.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discount_Percentage)
+                    </td>                    
+                </tr>
+            }
+
+        </table>     
+    </div>
+</div>

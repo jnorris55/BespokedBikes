@@ -1,0 +1,50 @@
+﻿@model BespokedBikes.Models.ReportQuarter
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Commission Report</h2>
+
+@using (@Html.BeginForm(null, null, FormMethod.Get, new { id = "reportForm" }))
+{
+    @Html.DropDownListFor(model => model.quarterNames, new SelectList(Model.quarterNames), "Select Quarter", htmlAttributes: new { @class = "form-control", name = "quarterNames", onchange = "this.form.submit()" })    
+}
+
+<table class="table" style="margin-top:10px;">
+<tr>
+    <th>
+        @Html.DisplayName("Name")
+    </th>
+    <th>
+        @Html.DisplayName("Bikes Sold")
+    </th>
+    <th>
+        @Html.DisplayName("Total Sales")
+    </th>
+    <th>
+        @Html.DisplayName("Total Commissions")
+    </th>    
+    <th></th>
+</tr>
+
+@foreach (var item in Model.reportData)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bikesSold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalSales)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.totalComissions)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BespokedBikes.Models.SalesDetailView>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sales</h2>
+
+<p>
+    @Html.ValidationMessage("ModelName")
+</p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+    Filter by date: @Html.TextBox("salesBeginDate", "Start Date", new { htmlAttributes = new { @readonly = "true", @class = "form-control datepicker" } }) @Html.TextBox("salesEndDate", "End Date", new { htmlAttributes = new { @readonly = "true", @class = "form-control datepicker" } })
+    <input type="submit" value="Search" />
+    </p>
+}
+    
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salesperson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sales_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sale_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comission)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salesperson.First_Name) @Html.DisplayFor(modelItem => item.Salesperson.Last_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.First_Name) @Html.DisplayFor(modelItem => item.Customer.Last_Name)
+        </td>
+        <td>
+            @Html.FormatValue("MM-dd-yyyy", item.Sales_Date.ToString("MM-dd-yyyy"))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sale_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comission)
+        </td>        
+    </tr>
+}
+
+</table>
